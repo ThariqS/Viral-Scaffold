@@ -1,0 +1,21 @@
+@import 'constants.scss';
+@import 'fonts.scss';
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-family: 'whitney-medium';
+	background-color: $body-background-color;
+	-webkit-font-smoothing: antialiased;
+}
+
+html{
+	body{
+		h1, h2, h3, h4, h5, p, ul{
+			margin: 0px;
+			padding: 0px;
+			font-family: 'whitney-semibold';
+			font-weight: normal;
+		}
+	}
+}

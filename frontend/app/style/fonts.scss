@@ -1,0 +1,25 @@
+// $left-bar-min-width: 175px;
+@mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal, $font-stretch : normal) {
+  @font-face {
+    font-family: $font-family;
+    src: url('/images/#{$font-filename}');
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-stretch: $font-stretch;
+  }
+}
+
+
+@include declare-font-face('fontello', 'fontello.woff', 'normal');
+@include declare-font-face('whitney-book', 'WhitneyHTF-Book.otf', 'normal');
+@include declare-font-face('whitney-semibold', 'WhitneyHTF-SemiBoldSC.otf', 'normal');
+@include declare-font-face('hoefler-titling', 'HoeflerTitling-HTF-LtRoman.otf', 'normal');
+@include declare-font-face('hoefler-titling-swash', 'HoeflerTitling-HTF-BdSwash.otf', 'normal');
+@include declare-font-face('hoefler-text-italic', 'HoeflerText-RegularItalic.otf', 'normal');
+@include declare-font-face('hoefler-titling-LtSC', 'HoeflerTitling-HTF-LtSC.otf', 'normal');
+@include declare-font-face('hoefler-text', 'HoeflerText-Roman.otf', 'normal');
+@include declare-font-face('whitney-medium', 'WhitneyHTF-Medium.otf', 'normal');
+@include declare-font-face('gotham-medium', 'GothamHTF-Medium.otf', 'normal');
+@include declare-font-face('lato-bold', 'Lato-Bol.ttf', 'normal');
+@include declare-font-face('lato-regular', 'Lato-Reg.ttf', 'normal');
+@include declare-font-face('lato-light', 'Lato-Lig.ttf', 'normal');

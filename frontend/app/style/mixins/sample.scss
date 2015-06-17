@@ -1,0 +1,8 @@
+@mixin sample($direction) {
+
+	@if ($direction == right){
+		float: right;
+	} @else{
+		float: left;
+	}
+}
