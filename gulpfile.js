@@ -12,7 +12,11 @@ var gulp = require('gulp'),
     uglify =  require('gulp-uglify');
 
 var log  = require('gulp-util').log;
+
 var nodemon = require('gulp-nodemon');
+var server  = require('tiny-lr');
+var refresh = require('gulp-livereload');
+
 
 /*
 var express = require('express'),
@@ -31,8 +35,18 @@ server.use(express.static('./dist'));
 gulp.task('dev', ['clean', 'static-resources', 'styles', 'lint', 'browserify','start-server'], function() { });
 
 
+gulp.task('live-reload', ['start-server'], function(){
+  return;
+  server.listen(config.ports.livereload, function(err){
+    if(err) {return console.error(err);}
+  });
+});
+
 gulp.task('start-server', ['clean', 'static-resources', 'styles', 'lint', 'browserify'], function () {
-  return nodemon({ script: config.paths.serverscript})
+
+  refresh.listen(config.ports.livereload);
+
+  return nodemon({ script: config.paths.serverscript,ext: ''})
     .on('restart', function () {
       console.log('restarting server')
     })
@@ -69,20 +83,21 @@ gulp.task('browserify', function() {
     debug: true
   }))
   .pipe(concat('main.js'))
-  .pipe(gulp.dest('frontend/dist/js'));
+  .pipe(gulp.dest('frontend/dist/js'))
+  .pipe(refresh(config.ports.livereload));
 });
 
 
 // Static Resources task
 gulp.task('static-resources', function() {
-  return gulp.src('frontend/app/**/*').pipe(gulp.dest('backend/dist/'));
+  return gulp.src('frontend/app/**/*')
+  .pipe(gulp.dest('backend/dist/'))
+  .pipe(refresh(config.ports.livereload));
 });
 
 
 // Watch task
 gulp.task('watch', ['clean', 'static-resources', 'styles', 'lint', 'browserify','start-server'], function() {
-  //refresh.listen(config.ports.livereload);// Start live reload
-
   gulp.watch(['frontend/app/scripts/*.js'],['lint','browserify']); // Watch our scripts, and when they change run lint and browserify
   gulp.watch(['frontend/app/scripts/**/*.js'],['static-resources']);
   gulp.watch(['frontend/app/modules/**/*.js'],['lint','browserify']);

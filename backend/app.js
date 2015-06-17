@@ -6,7 +6,7 @@ var livereload = require('connect-livereload');
 
 var app = express();
 
-//app.use(livereload({port: config.ports.livereload}));
+app.use(livereload({port: config.ports.livereload}));
 
 app.use(express.static(path.resolve('./backend/dist')));
 

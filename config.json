@@ -1,7 +1,7 @@
 {
   "ports": {
     "server": 7300,
-    "livereload": 35734
+    "livereload": 35749
   },
   "paths": {
     "serverscript" : "./backend/server.js",
